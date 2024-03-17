@@ -1,6 +1,7 @@
 // Importing necessary packages
 import 'package:cloud_firestore/cloud_firestore.dart'; // Firestore package
-import 'package:flutter_with_firebase/models/todo.dart'; // Importing the Todo class
+import 'package:flutter_with_firebase/models/todo.dart';
+// Importing the Todo class
 
 // Constant variable to hold the name of the Firestore collection
 const String TODO_COLLECTION_REF = 'Todos';
@@ -17,11 +18,11 @@ class DatabaseService {
   DatabaseService() {
     // Initialize the collection reference with converters for the Todo class
     _todoRef = _firestore.collection(TODO_COLLECTION_REF).withConverter<Todo>(
-      // Convert Firestore data to Todo object
-      fromFirestore: (snapshots, _) => Todo.fromJson(snapshots.data()!),
-      // Convert Todo object to Firestore data
-      toFirestore: (todo, _) => todo.toJson(),
-    );
+          // Convert Firestore data to Todo object
+          fromFirestore: (snapshots, _) => Todo.fromJson(snapshots.data()!),
+          // Convert Todo object to Firestore data
+          toFirestore: (todo, _) => todo.toJson(),
+        );
   }
 
   // Method to get all todos as a stream
@@ -43,4 +44,6 @@ class DatabaseService {
   void deleteTodo(String todoId) {
     _todoRef.doc(todoId).delete();
   }
+  
+
 }
